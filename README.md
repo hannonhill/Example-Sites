@@ -5,7 +5,8 @@ Example Sites for importing into Cascade Server instances.
 
 List of example Sites with descriptions:
 
-**Basic-Site.csse** - This Site is meant to be a very basic started for building out a brand new Site from scratch.
+**Basic-Site.csse** - This Site is meant to be a very basic started for building out a brand new Site from scratch.<br />
+https://github.com/hannonhill/Cascade-Server-Example-Sites/raw/master/Basic-Site.csse
 
 It contains:
 
