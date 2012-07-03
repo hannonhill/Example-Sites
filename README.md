@@ -5,7 +5,7 @@ Example Sites for importing into Cascade Server instances.
 
 List of example Sites with descriptions:
 
-**Basic-Site.csse** - This Site is meant to be a very basic started for building out a brand new Site from scratch.<br />
+Basic-Site - This Site is meant to be a very basic started for building out a brand new Site from scratch.<br />
 https://github.com/hannonhill/Cascade-Server-Example-Sites/raw/master/Basic-Site.csse
 
 It contains:
@@ -15,7 +15,7 @@ It contains:
 * Example Index Blocks for a variety of cases (calling page, current folder, root going forward 2 levels, etc).
 * An example folder structure for categorizing and storing non-published assets.
 
-**Blog.csse** - This Site is an example of blogging in Cascade Server. It is the actual example talked about in [this blog post](http://www.hannonhill.com/news/blog/2012/blogging-with-cascade-server.html) and demonstrated in [this webinar](http://www.hannonhill.com/products/demos/setting-up-blogging-in-cascade-webinar-form.html).
+Blog - This Site is an example of blogging in Cascade Server. It is the actual example talked about in [this blog post](http://www.hannonhill.com/news/blog/2012/blogging-with-cascade-server.html) and demonstrated in [this webinar](http://www.hannonhill.com/products/demos/setting-up-blogging-in-cascade-webinar-form.html).
 
 It contains:
 
