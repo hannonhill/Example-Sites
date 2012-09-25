@@ -1,4 +1,4 @@
-Basic Site
+Starter Site
 ============================
 
 It contains:
