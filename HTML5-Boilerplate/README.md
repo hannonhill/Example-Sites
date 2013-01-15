@@ -10,3 +10,14 @@ This is the [HTML5 Boilerplate](http://html5boilerplate.com/) code at commit [fb
 ### Browse It
 
 If you have a login for our public sandbox: http://sandbox.cascadeserver.com, you can [browse the read-only site](http://sandbox.cascadeserver.com/entity/open.act?id=25e51ac30a7aa62645b5ff658c18bd1b&type=folder)
+
+
+### Getting Started
+
+After you get the Site imported, you'll want to modify the `h5boilerplate` template in the Site.
+
+- Add in your Google Analytics tracking code
+- Remove the example content from the Template
+- Rename the `h5b test` Configuration Set and Content Type to something of you're choosing
+
+Then, you can start creating pages with that Content Type
