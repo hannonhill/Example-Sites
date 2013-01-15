@@ -3,9 +3,10 @@ This is the HTML5 Boilerplate code at commit h5bp/html5-boilerplate@fb91 integra
 
 ### Install It
 
+- [Download](https://github.com/hannonhill/Example-Sites/raw/master/HTML5-Boilerplate/html5%20boilerplate.csse) the .csse file
 - Navigate to Cascade's [Site Import tool](http://www.hannonhill.com/kb/Site-Import-Export/index.html#site-import)
 - Specify a Site Name
-- 
+- Choose the downloaded .csse file
 
 ### Browse It
 
