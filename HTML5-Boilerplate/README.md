@@ -1,5 +1,4 @@
-
-This is the HTML5 Boilerplate code at commit h5bp/html5-boilerplate@fb9166461b4e23905ca9eddadeafd9895db0629f integrated into a Cascade site. We've taken their [index.html file](https://github.com/h5bp/html5-boilerplate/blob/fb9166461b4e23905ca9eddadeafd9895db0629f/index.html) and implemented it as a template in Cascade using code tags available in Cascade 7.2 and later.
+This is the [HTML5 Boilerplate](http://html5boilerplate.com/) code at commit [fb9166461b4e23905ca9eddadeafd9895db0629f](https://github.com/h5bp/html5-boilerplate/tree/fb9166461b4e23905ca9eddadeafd9895db0629f) integrated into a Cascade site. We've taken their [index.html file](https://github.com/h5bp/html5-boilerplate/blob/fb9166461b4e23905ca9eddadeafd9895db0629f/index.html) and implemented it as a template in Cascade using code tags available in Cascade 7.2 and later.
 
 ### Install It
 
