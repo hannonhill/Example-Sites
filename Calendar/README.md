@@ -1,6 +1,8 @@
 Calendar
 ============================
 
+For best results, import into an instance of Cascade running version 7.2 or greater. Results may vary importing into 7.0.x because of potential database structure changes.
+
 It contains:
 
 * Main calendar with month, week, and day views.
