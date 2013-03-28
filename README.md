@@ -12,3 +12,5 @@ Current list of example Sites with descriptions:
 - [Site Scaffolding](https://github.com/hannonhill/Example-Sites/tree/master/Site-Scaffolding) - Basic Site for building out a brand new Site from scratch that has folder scaffolding. Contains the admin folder structure, a few Index Blocks, and an XML Template.
 
 - [HTML5 Boilerplate](https://github.com/hannonhill/Example-Sites/tree/master/HTML5-Boilerplate) - HTML5 Boilerplate templates integrated into Cascade.
+
+- [Calendar](https://github.com/hannonhill/Example-Sites/tree/master/Calendar) - Functioning Calendar built in Cascade. Includes custom categories, multiple views, repeatable events, and multi-channel output (XHTML, iCal, PDF, RSS, XML).
