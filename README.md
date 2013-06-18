@@ -14,3 +14,5 @@ Current list of example Sites with descriptions:
 - [HTML5 Boilerplate](https://github.com/hannonhill/Example-Sites/tree/master/HTML5-Boilerplate) - HTML5 Boilerplate templates integrated into Cascade.
 
 - [Calendar](https://github.com/hannonhill/Example-Sites/tree/master/Calendar) - Functioning Calendar built in Cascade. Includes custom categories, multiple views, repeatable events, and multi-channel output (XHTML, iCal, PDF, RSS, XML).
+
+- [Bricks](https://github.com/hannonhill/Example-Sites/tree/master/Bricks) - Example of micro-content functionality we call Bricks. Used to update small pieces of content that exist within larger pieces of content.
