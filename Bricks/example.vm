@@ -1,0 +1,18 @@
+#set ( $sib = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block) )
+
+#set ( $bricks = $_XPathTool.selectNodes($sib, "system-page/system-data-structure/brick") )
+#macro ( useBricks $contentString )
+    #set ( $string = $contentString )
+    
+    #foreach ( $item in $bricks )
+        #set ( $var = "\[" + $_EscapeTool.xml($item.getChild("name").value) + "\]" )
+        #set ( $val = $_EscapeTool.xml($item.getChild("value").value) )
+        #set ( $string = $string.replaceAll($var, $val) )
+    #end
+    ${string}
+#end
+
+#set ( $page = $_XPathTool.selectSingleNode($sib, "calling-page/system-page") )
+#set ( $content = $_SerializerTool.serialize($page.getChild("page-xhtml"), true) )
+
+#useBricks($content)
