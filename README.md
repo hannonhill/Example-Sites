@@ -16,3 +16,5 @@ Current list of example Sites with descriptions:
 - [Calendar](https://github.com/hannonhill/Example-Sites/tree/master/Calendar) - Functioning Calendar built in Cascade. Includes custom categories, multiple views, repeatable events, and multi-channel output (XHTML, iCal, PDF, RSS, XML).
 
 - [Bricks](https://github.com/hannonhill/Example-Sites/tree/master/Bricks) - Example of micro-content functionality we call Bricks. Used to update small pieces of content that exist within larger pieces of content.
+
+- [News](https://github.com/hannonhill/Example-Sites/tree/master/News) - Example of news/press content. Categories, monthly and yearly archives, social media sharing, RSS and Atom feeds, Bootstrap v3.0.2, and more.
