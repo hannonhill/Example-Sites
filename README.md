@@ -15,6 +15,8 @@ Example Sites for importing into Cascade Server instances.
 
 - [News](https://github.com/hannonhill/Example-Sites/tree/master/News) - Example of news/press content. Categories, monthly and yearly archives, social media sharing, RSS and Atom feeds, Bootstrap v3.0.2, and more.
 
+- [PHP Form Builder](https://github.com/hannonhill/Example-Sites/tree/master/PHP-Form-Builder)
+
 - [Site Scaffolding](https://github.com/hannonhill/Example-Sites/tree/master/Site-Scaffolding) - Basic Site for building out a brand new Site from scratch that has folder scaffolding. Contains the admin folder structure, a few Index Blocks, and an XML Template.
 
 - [Social Media Mashup](https://github.com/hannonhill/Example-Sites/tree/master/Social-Media-Mashup)
