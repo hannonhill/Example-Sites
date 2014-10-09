@@ -1,0 +1,43 @@
+## Current system-page id
+#set ( $pageID = $_XPathTool.selectSingleNode($contentRoot,"/system-index-block/calling-page/system-page/@id").value )
+
+## Comment block id
+#set ( $blockID = $_XPathTool.selectSingleNode($contentRoot,"/system-index-block/system-block/@id").value )
+
+## Reference the comment nodes
+#set ( $comments = $_XPathTool.selectNodes($contentRoot,"/system-index-block/system-block/block-xhtml/comments/comment[@pageID='${pageID}']") )
+
+$_SortTool.addSortCriterion("@time", "", "number", "descending", "")
+$_SortTool.sort($comments)
+
+<div class="post">
+    <h2 class="title">Comments</h2>
+    <div class="entry">
+        <p>
+            <form action="/path/to/comment-handler.php" method="post">
+                <input type="hidden" value="${pageID}" name="PageID"/>
+                <input type="hidden" value="${blockID}" name="BlockID"/>
+                <!--#START-CODE<input type="hidden" value="<?php echo 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']; ?>" name="Redirect"/>#END-CODE-->
+                <input type="text" value="" placeholder="Name" name="Name" maxlength="50"/>
+                <input type="text" value="" placeholder="Message" name="Message" maxlength="500"/>
+                <input type="Submit" value="Submit" />
+            </form>
+        </p>
+    </div>
+    #if ( $comments.size() > 0 )
+        #foreach ( $comment in $comments )
+            #set ( $name = $comment.getChild("name") )
+            #set ( $message = $comment.getChild("message") )
+            <div class="comment">
+                <p>
+                    <strong>$_EscapeTool.xml($name.value) says</strong> --
+                    $_EscapeTool.xml($message.value)
+                </p>
+            </div>
+        #end
+    #else
+        <div class="entry">
+            <p>No comments.</p>
+        </div>
+    #end
+</div>

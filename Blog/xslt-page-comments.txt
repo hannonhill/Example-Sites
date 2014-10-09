@@ -1,0 +1,68 @@
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:variable name="pageID">
+        <xsl:value-of select="/system-index-block/calling-page/system-page/@id"/>
+    </xsl:variable>
+    <xsl:variable name="blockID">
+        <xsl:value-of select="/system-index-block/system-block/@id"/>
+    </xsl:variable>
+    <xsl:template match="/">
+        <xsl:apply-templates select="system-index-block/system-block"/>
+    </xsl:template>
+    <xsl:template match="system-block">
+        <div class="post">
+            <h2 class="title">
+                <xsl:text>Comments</xsl:text>
+            </h2>
+            <div class="entry">
+                <p>
+                    <form action="/path/to/comment-handler.php" method="post">
+                        <input type="hidden" name="PageID">
+                            <xsl:attribute name="value">
+                                <xsl:value-of select="$pageID"/>
+                            </xsl:attribute>
+                        </input>
+                        <input type="hidden" name="BlockID">
+                            <xsl:attribute name="value">
+                                <xsl:value-of select="$blockID"/>
+                            </xsl:attribute>
+                        </input>
+                        <input type="hidden" name="Redirect">
+                            <xsl:attribute name="value">
+                                <xsl:text><?php echo 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']; ?></xsl:text>
+                            </xsl:attribute>
+                        </input>
+                        <input type="text" value="" placeholder="Name" name="Name" maxlength="50"/>
+                        <input type="text" value="" placeholder="Message" name="Message" maxlength="500"/>
+                        <input type="Submit" value="Submit"/>
+                    </form>
+                </p>
+            </div>
+            <xsl:choose>
+                <xsl:when test="count(block-xhtml/comments/comment) &gt; 0">
+                    <xsl:apply-templates select="block-xhtml/comments/comment">
+                        <xsl:sort select="@time" data-type="number" order="descending"/>
+                    </xsl:apply-templates>
+                </xsl:when>
+                <xsl:otherwise>
+                    <div class="entry">
+                        <p>
+                            <xsl:text>No comments.</xsl:text>
+                        </p>
+                    </div>
+                </xsl:otherwise>
+            </xsl:choose>
+        </div>
+    </xsl:template>
+    <xsl:template match="comment">
+        <div class="comment">
+            <p>
+                <strong>
+                    <xsl:value-of select="name"/>
+                    <xsl:text>says</xsl:text>
+                </strong>
+                <xsl:text>--</xsl:text>
+                <xsl:value-of select="message"/>
+            </p>
+        </div>
+    </xsl:template>
+</xsl:stylesheet>
