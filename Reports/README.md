@@ -8,20 +8,7 @@ The Stale Content Report dashboard includes a graphical summary of content needi
 
 Cascade Server also connects with Google Analytics via a Connector to import analytics data into your instance for graphical and tabular views that can be filtered based on differen time intervals.
 
-Other content and asset reports can be created using data that Cascade Server gneerates. Such reports include:
-
-Pages without a Title or Display Name metadata value
-Pages without a Review Date medadata value
-Recently created Pages
-Recently edited Pages
-Recently published Pages
-Pages with unpublished changes
-Pages not set to publish
-Access/Permissions Tree
-
-These reports are created using either XSLT or Velocity by indexing assets within the application and displaying those that meet the criteria. Additional reports can be created and these reports are open to repurposing as needed.
-
-Current Site was exported using Cascade Server version 7.12.4
+Other content and asset reports can be created using data that Cascade Server generates. These reports are created using either XSLT or Velocity by indexing assets within the application and displaying those that meet the criteria. Additional reports can be created and these reports are open to repurposing as needed.
 
 ##Documentation
 
@@ -36,6 +23,7 @@ Current list of reports:
 * Recently created Pages
 * Recently edited Pages
 * Recently published Pages
+* Access/Permissions Tree
 
 ###Reports Site
 
