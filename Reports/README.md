@@ -43,13 +43,15 @@ You can place individual reports within each Site wherever you want. This is bec
 
 ###Loading a Report
 
-To load a Report into an individual Site, create a New Page that uses one of the Report Content Types from the Report Site. Since Content Types can be shared across all Sites, we manage how the similar reports function from a single location.
+To load a Report into an individual Site, use one of the Asset Factories in the Reports Site. Since Content Types can be shared across all Sites, we manage how the similar reports function from a single location.
 
-You will also need to create an Index Block, which is assigned manually on each report via the Data Definition, that contains the dataset you want reported against. In most cases you probably want to index the entire Site from the Base Folder and exclude Page XML. Depending on what Metadata fields are needed for the purpose of the Report, the “Indexed Asset Content” and “Other Indexed Info” options will be adjusted accordingly.
+You will need to create an Index Block first. The Index Block, manually assigned on each report via the Data Definition, contains the dataset you want reported against. In most cases you probably want to index the entire Site from the Base Folder and exclude Page XML. Depending on what Metadata fields are needed for the purpose of the Report, the “Indexed Asset Content” and “Other Indexed Info” options will be adjusted accordingly.
+
+You can choose to create all reports with the "All Reports" Folder Asset Factory or manually choose individual reports to create from the "Reports" Asset Factory Container. Once you've selected which one you want to create, simply update the location that you would like it to be created in (the Parent Folder option on the Create Screen).
 
 ###Creating a new Report
 
-To create a new Report, you will need to create 2 Content Types, 1 Content Type Index Block, and 2 Formats (either XSLT or Velocity -- you can choose as either will work).
+To create a new Report, you will need to create 2 Content Types, 1 Content Type Index Block, and 2 Formats (either XSLT or Velocity -- you can choose as either will work). Optionally you can include any new reports in the Asset Factories along with the default reports to make the rollout of new reports easier.
 
 The first Content Type is for the Report itself. The second is for the Report aggregation Page. The Content Type Index Block aggregates the Reports from across the system. The first Format powers the aggregation table. The second Format displays the results on the individual Report. The existing Content Types, Index Blocks, and Formats can easily be used as an example for how to proceed.
 
