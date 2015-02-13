@@ -12,6 +12,8 @@ Other content and asset reports can be created using data that Cascade Server ge
 
 ##Documentation
 
+Site exported using version 7.12.4 of Cascade Server.
+
 Reports are built using Index Blocks and Formats. Formats are available in both XSLT and Velocity versions.
 
 Current list of reports:
