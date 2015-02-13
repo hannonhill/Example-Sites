@@ -1,0 +1,50 @@
+## Make some common code available.
+#import('/_cascade/formats/velocity/_common')
+
+## Set references to the system-page and system-data-structure nodes.
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+#set ( $data = $page.getChild("system-data-structure") )
+
+## Collect the pages that are not available for publish.
+#set ( $collection = $_XPathTool.selectNodes($data, "block/content/system-index-block//system-page[not(is-published)]") )
+#set ( $size = $collection.size() )
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1>$_EscapeTool.xml($page.getChild("title").value)</h1>
+        <p>
+            ${size} ${_DisplayTool.plural($size, "page", "pages")} not checked for publishing.
+        </p>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-xs-12">
+    #if ( $size > 0 )
+        <div class="table-responsive">
+        <table id="reportTable" class="table table-striped table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>Page</th>
+                #actionsHeader()
+            </tr>
+        </thead>
+        <tbody>
+        #foreach ( $item in $collection )
+            #set ( $id = $item.getAttribute("id").value )
+            #set ( $path = $item.getChild("path").value )
+            #set ( $link = $item.getChild("link").value )
+            #set ( $title = $item.getChild("title") )
+            <tr>
+                <td><a href="${link}">$_EscapeTool.xml($title.value)</a> <small class="text-muted">[${path}]</small></td>
+                <td>#cascadeLink("open", $id) #cascadeLink("edit", $id) #cascadeLink("publish", $id)</td>
+            </tr>
+        #end
+        </tbody>
+        </table>
+        </div>
+    #else
+        <p>Nothing to show here.</p>
+    #end
+    </div>
+</div>

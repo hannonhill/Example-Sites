@@ -1,0 +1,57 @@
+## Make some common code available.
+#import('/_cascade/formats/velocity/_common')
+
+## Set references to the system-page and system-data-structure nodes.
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+#set ( $data = $page.getChild("system-data-structure") )
+
+## Collect the pages that have no Review Date.
+#set ( $collection = $_XPathTool.selectNodes($contentRoot, "/system-index-block/system-page/system-data-structure/block/content/system-index-block//system-folder[not(system-page[name='index'])]") )
+#set ( $size = $collection.size() )
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1>$_EscapeTool.xml($page.getChild("title").value)</h1>
+        <p>
+            ${size} ${_DisplayTool.plural($size, "folder", "folders")} without a page named "index."
+            View the table below for the breakdown by Site.
+        </p>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-xs-12">
+    #if ( $size > 0 )
+        #set ( $sites = $_XPathTool.selectNodes($contentRoot, "/system-index-block/system-page[system-data-structure/block/content/system-index-block//system-folder[not(system-page[name='index'])]]") )
+        $_SortTool.addSortCriterion("site", "en", "text", "ascending", "upper-first")
+        $_SortTool.sort($sites)
+        
+        <div class="table-responsive">
+        <table id="reportTable" class="table table-striped table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>Site</th>
+                <th>Number of Folders</th>
+                #actionsHeader()
+            </tr>
+        </thead>
+        <tbody>
+        #foreach ( $site in $sites )
+            #set ( $id = $site.getAttribute("id").value )
+            #set ( $link = $site.getChild("link").value )
+            #set ( $s = $site.getChild("site") )
+            #set ( $num = $_XPathTool.selectNodes($site, "system-data-structure/block/content/system-index-block//system-folder[not(system-page[name='index'])]") )
+            <tr>
+                <td><a href="${link}">$_EscapeTool.xml($s.value)</a></td>
+                <td>${num.size()}</td>
+                <td>#cascadeLink("open", $id)</td>
+            </tr>
+        #end
+        </tbody>
+        </table>
+        </div>
+    #else
+        <p>Nothing to show here. Good job!</p>
+    #end
+    </div>
+</div>

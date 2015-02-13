@@ -1,0 +1,63 @@
+## Make some common code available.
+#import('/_cascade/formats/velocity/_common')
+
+## Reference the 'system-index-block' node.
+#set ( $sib = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block") )
+
+## Set references to the system-page and system-data-structure nodes.
+#set ( $page = $_XPathTool.selectSingleNode($sib, "calling-page/system-page") )
+#set ( $data = $page.getChild("system-data-structure") )
+
+## Reference the 'user-information' node.
+#set ( $userInfo = $_XPathTool.selectSingleNode($sib, "user-information") )
+
+## Get user information.
+#set ( $username = $userInfo.getChild("username").value )
+#set ( $fullname = $userInfo.getChild("full-name").value )
+    #if ( $fullname != "" )
+        #set ( $userDisplayName = $fullname )
+    #else
+        #set ( $userDisplayName = $username )
+    #end
+#set ( $groups = $_XPathTool.selectNodes($userInfo, "groups/group") )
+#set ( $userGroups = "" )
+#foreach ( $group in $groups )
+    #set ( $userGroups = $userGroups + $group.value )
+    #if ( $foreach.hasNext )
+        #set ( $userGroups = $userGroups + "|" )
+    #end
+#end
+
+#set ( $accessType  = "read" )
+#set ( $accessCheck = "access-rights[group[contains('${userGroups}',name)][permission='${accessType}']]" )
+
+## Gather reports.
+#set ( $collection = $_XPathTool.selectNodes($sib, "system-page[name!='index'][${accessCheck}]") )
+<div class="row">
+    <div class="col-xs-12">
+        <h1>$_EscapeTool.xml($page.getChild("title").value)</h1>
+        <p>Reports that you, ${userDisplayName}, can see.</p>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-xs-12">
+        ## Make the map.
+        #if ( $collection.size() > 0 )
+            <ul>
+            #foreach ( $item in $collection )
+                <li>
+                    #set ( $title = $item.getChild("title") )
+                    #set ( $link = $page.getChild("link").value )
+                    
+                    ## Cascade Server version 6.10+
+                    ## Use $_SerializerTool.serialize($thePageTitle, true) for versions previous to 6.10
+                    <a href="${link}">$_EscapeTool.xml($title.value)</a>
+                </li>
+            #end
+            </ul>
+        #else
+            <p>Currently you do not have access to any reports.</p>
+        #end
+    </div>
+</div>

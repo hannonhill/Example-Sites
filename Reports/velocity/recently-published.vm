@@ -1,0 +1,81 @@
+## Make some common code available.
+#import('/_cascade/formats/velocity/_common')
+
+## Set references to the system-page and system-data-structure nodes.
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+#set ( $data = $page.getChild("system-data-structure") )
+
+## Determine which filter to use.
+#set ( $type = $data.getChild("filter").value )
+#if ( $type == "Specific Date" )
+    #set ( $timestamp = $data.getChild("datetime").value )
+    #set ( $date = $_DateTool.getDate($timestamp) )
+#elseif ( $type == "Range" )
+    ## Create calendar object.
+    #set ( $cal = $_DateTool.getCalendar() )
+    ## Add a day to the calendar object.
+    ## First parameter is a constant representing DAY.
+    ## Second parameter is the number of days.
+    ## We are multiplying the number of days by -1 to move into the past.
+    $cal.add(6, $_MathTool.mul(-1, $_MathTool.toInteger($data.getChild("range").value)))
+    ## Get that day as a UNIX timestamp in milliseconds to compare with what Cascade generates.
+    #set ( $timestamp = $cal.getTimeInMillis() )
+    #set ( $date = $cal.getTime() )
+#else
+    ## Something is wrong! T_T
+#end
+
+## Collect the pages that have been published since the selected date.
+#set ( $collection = $_XPathTool.selectNodes($data, "block/content/system-index-block//system-page[last-published-on>${timestamp}][not(@current)]") )
+#set ( $size = $collection.size() )
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1>$_EscapeTool.xml($page.getChild("title").value)</h1>
+        <p>
+            ${size} ${_DisplayTool.plural($size, "page", "pages")}
+            published since
+            $_DateTool.format("FULL", $date).
+        </p>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-xs-12">
+    #if ( $size > 0 )
+        $_SortTool.addSortCriterion("last-published-on", "", "number", "descending", "")
+        $_SortTool.sort($collection)
+        
+        <div class="table-responsive">
+        <table id="reportTable" class="table table-striped table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>Page</th>
+                <th>Last Publish</th>
+                <th>Published By</th>
+                #actionsHeader()
+            </tr>
+        </thead>
+        <tbody>
+        #foreach ( $item in $collection )
+            #set ( $id = $item.getAttribute("id").value )
+            #set ( $title = $item.getChild("title") )
+            #set ( $path = $item.getChild("path").value )
+            #set ( $link = $item.getChild("link").value )
+            #set ( $on = $_DateTool.getDate($item.getChild("last-published-on").value) )
+            #set ( $by = $item.getChild("last-published-by").value )
+            <tr>
+                <td><a href="${link}">$_EscapeTool.xml($title.value)</a> <small class="text-muted">[${path}]</small></td>
+                <td>$_DateTool.format("MM/dd/yy", $on)</td>
+                <td>${by}</td>
+                <td>#cascadeLink("open", $id) #cascadeLink("edit", $id) #cascadeLink("publish", $id)</td>
+            </tr>
+        #end
+        </tbody>
+        </table>
+        </div>
+    #else
+        <p>Nothing to show here. Go publish some content!</p>
+    #end
+    </div>
+</div>

@@ -1,0 +1,18 @@
+## To standardize the width of the column.
+#macro ( actionsHeader )
+<th class="col-xs-1 actions">Actions</th>
+#end
+
+## To output the action links.
+#macro ( cascadeLink $type $id )
+    #if ( $type == "open" )
+        #set ( $fa = "fa-search" )
+    #elseif ( $type == "edit" )
+        #set ( $fa = "fa-pencil" )
+    #elseif ( $type == "publish" )
+        #set ( $fa = "fa-paper-plane-o" )
+    #else
+        ## Something is wrong! T_T
+    #end
+    <a href="/entity/${type}.act?id=${id}&amp;type=page" target="_parent"><span class="fa fa-fw ${fa}"></span></a>
+#end

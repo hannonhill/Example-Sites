@@ -1,0 +1,74 @@
+## Make some common code available.
+#import('/_cascade/formats/velocity/_common')
+
+## Set references to the system-page and system-data-structure nodes.
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+#set ( $data = $_XPathTool.selectSingleNode($page, "system-data-structure/block/content/system-index-block") )
+
+## Collect the pages and folders.
+#set ( $collection = $_XPathTool.selectNodes($data, "system-page | system-folder[descendant::system-page]") )
+#set ( $size = $collection.size() )
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1>$_EscapeTool.xml($page.getChild("title").value)</h1>
+        <p>Listing all the pages/folders and who has access.</p>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-xs-12">
+    #if ( $size > 0 )
+        #loopCollection($collection)
+    #else
+        <p>Nothing to show here. Go create some content!</p>
+    #end
+    </div>
+</div>
+
+#macro ( loopCollection $theCollection )
+    #if ( $theCollection.size() > 0 )
+        <ul>
+		#foreach ( $collectItem in $theCollection )
+			<li>
+                #showItem($collectItem)
+    			#if ( $collectItem.getName() == "system-folder" )
+                    #set ( $collectItemKids = $_XPathTool.selectNodes($collectItem, "system-page | system-folder[descendant::system-page]") )
+    				#loopCollection($collectItemKids)
+    			#end
+			</li>
+		#end
+		</ul>
+	#end
+#end
+
+#macro ( showItem $theItem )
+    #set ( $itemId = $theItem.getAttribute("id").value )
+    #set ( $itemPath = $theItem.getChild("path").value )
+    #set ( $itemLink = $theItem.getChild("link").value )
+    #set ( $itemAccess = $_XPathTool.selectNodes($theItem, "access-rights/user | access-rights/group") )
+    #if ( $theItem.getName() == "system-page" )
+        <a href="${itemLink}">${itemPath}</a>
+    #else
+        <a href="/entity/open.act?id=${itemId}&amp;type=folder" target="_parent">${itemPath}</a>
+    #end
+    #if ( $itemAccess.size() > 0 )
+        $_SortTool.addSortCriterion("../name(.)", "", "text", "ascending", "")
+        $_SortTool.addSortCriterion("name", "", "text", "ascending", "")
+        $_SortTool.sort($itemAccess)
+        (
+        #foreach ( $userGroup in $itemAccess )
+            #set ( $name = $userGroup.getChild("name").value )
+            #set ( $perm = $userGroup.getChild("permission").value )
+            #if ( $perm == "read" )
+                #set ( $permClass = "text-success" )
+            #elseif ( $perm == "write" )
+                #set ( $permClass = "text-danger" )
+            #else
+                #set ( $permClass = "" ) ## Something went wrong.
+            #end
+            ${name}:<span class="${permClass}">${perm}</span>;
+        #end
+        )
+    #end
+#end
