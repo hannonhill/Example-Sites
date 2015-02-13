@@ -17,6 +17,7 @@ Recently edited Pages
 Recently published Pages
 Pages with unpublished changes
 Pages not set to publish
+Access/Permissions Tree
 
 These reports are created using either XSLT or Velocity by indexing assets within the application and displaying those that meet the criteria. Additional reports can be created and these reports are open to repurposing as needed.
 
