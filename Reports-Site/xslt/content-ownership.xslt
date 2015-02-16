@@ -1,5 +1,4 @@
-<xsl:stylesheet
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output indent="yes" omit-xml-declaration="yes"/>
     <xsl:include href="/_cascade/formats/xslt/_common"/>
     <xsl:template match="/system-index-block/calling-page/system-page">
@@ -34,7 +33,7 @@
                         </div>
                     </xsl:when>
                     <xsl:otherwise>
-                        <p>Nothing to show here. Go create some content!</p>
+                        <p>Nothing to show here. No pages can be found.</p>
                     </xsl:otherwise>
                 </xsl:choose>
             </div>

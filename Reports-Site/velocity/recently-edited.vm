@@ -75,7 +75,7 @@
         </table>
         </div>
     #else
-        <p>Nothing to show here. Go edit some content!</p>
+        <p>Nothing to show here. No pages were edited within the range you selected.</p>
     #end
     </div>
 </div>

@@ -1,5 +1,4 @@
-<xsl:stylesheet
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output indent="yes" omit-xml-declaration="yes"/>
     <xsl:include href="/_cascade/formats/xslt/_common"/>
     <xsl:include href="site://_Common Resources/formats/xslt/format-date"/>
@@ -58,7 +57,7 @@
                         </div>
                     </xsl:when>
                     <xsl:otherwise>
-                        <p>Nothing to show here. Go publish some content!</p>
+                        <p>Nothing to show here. No pages were published within the range you selected.</p>
                     </xsl:otherwise>
                 </xsl:choose>
             </div>

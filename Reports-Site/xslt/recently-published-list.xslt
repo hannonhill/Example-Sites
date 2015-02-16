@@ -1,5 +1,4 @@
-<xsl:stylesheet
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output indent="yes" omit-xml-declaration="yes"/>
     <xsl:include href="/_cascade/formats/xslt/_common"/>
     <xsl:include href="site://_Common Resources/formats/xslt/format-date"/>
@@ -24,13 +23,12 @@
                     <xsl:value-of select="system-index-block/calling-page/system-page/title"/>
                 </h1>
                 <p>
-                    <xsl:text>Pages created since </xsl:text>
+                    <xsl:value-of select="$recentPublishes"/>
+                    <xsl:text> pages created since </xsl:text>
                     <xsl:call-template name="format-date">
                         <xsl:with-param name="date" select="$timestamp"/>
                         <xsl:with-param name="mask">default</xsl:with-param>
                     </xsl:call-template>
-                    <xsl:text>: </xsl:text>
-                    <xsl:value-of select="$recentPublishes"/>
                     <xsl:text>. View the table below for the breakdown by Site.</xsl:text>
                 </p>
             </div>
@@ -39,7 +37,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <xsl:choose>
-                    <xsl:when test="$recentPublishes &gt; 0">
+                    <xsl:when test="count(system-index-block/system-page) &gt; 0">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover table-condensed" id="reportTable">
                                 <thead>
@@ -50,7 +48,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <xsl:apply-templates select="system-index-block/system-page[system-data-structure/block/content/system-index-block//system-page[last-published-on&gt;$timestamp][not(@current)]]">
+                                    <xsl:apply-templates select="system-index-block/system-page[not(contains(path,'base-asset'))]">
                                         <xsl:sort data-type="text" order="ascending" select="site"/>
                                     </xsl:apply-templates>
                                 </tbody>
@@ -58,7 +56,7 @@
                         </div>
                     </xsl:when>
                     <xsl:otherwise>
-                        <p>Nothing to show here. Go create new content!</p>
+                        <xsl:call-template name="noReportData"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </div>

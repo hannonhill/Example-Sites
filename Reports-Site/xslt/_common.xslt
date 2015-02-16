@@ -1,5 +1,4 @@
-<xsl:stylesheet
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:template name="cascadelink">
         <xsl:param name="type"/>
         <xsl:param name="pageID"/>
@@ -31,5 +30,8 @@
                 <xsl:value-of select="name"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    <xsl:template name="noReportData">
+        <p>There is nothing here because no reports have been created. Create a report of this type in one of your Sites to view data.</p>
     </xsl:template>
 </xsl:stylesheet>

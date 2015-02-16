@@ -1,5 +1,4 @@
-<xsl:stylesheet
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output indent="yes" omit-xml-declaration="yes"/>
     <xsl:template match="/system-index-block/calling-page/system-page">
         <xsl:variable name="assets" select="system-data-structure/block/content/system-index-block/system-page | system-data-structure/block/content/system-index-block/system-folder[descendant::system-page]"/>

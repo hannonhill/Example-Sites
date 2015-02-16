@@ -3,6 +3,10 @@
 <th class="col-xs-1 actions">Actions</th>
 #end
 
+#macro ( noReportData )
+<p>There is nothing here because no reports have been created. Create a report of this type in one of your Sites to view data.</p>
+#end
+
 ## To output the action links.
 #macro ( cascadeLink $type $id )
     #if ( $type == "open" )

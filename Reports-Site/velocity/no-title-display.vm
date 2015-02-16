@@ -43,7 +43,7 @@
         </table>
         </div>
     #else
-        <p>Nothing to show here. Good job!</p>
+        <p>Nothing to show here. No pages without a Title or Display Name were found.</p>
     #end
     </div>
 </div>

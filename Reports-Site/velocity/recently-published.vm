@@ -75,7 +75,7 @@
         </table>
         </div>
     #else
-        <p>Nothing to show here. Go publish some content!</p>
+        <p>Nothing to show here. No pages were published within the range you selected.</p>
     #end
     </div>
 </div>
