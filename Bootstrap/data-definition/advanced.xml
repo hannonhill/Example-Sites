@@ -1,0 +1,24 @@
+<system-data-structure>
+    <group identifier="row" label="Row" multiple="true" maximum-number="4">
+        <group identifier="column" label="Column Content" multiple="true" maximum-number="4">
+            <text type="checkbox" identifier="features" label="Features" required="true">
+                <checkbox-item value="Heading" show-fields="row/column/heading"/>
+                <checkbox-item value="Image+Link" show-fields="row/column/image, row/column/alt, row/column/type"/>
+                <checkbox-item value="WYSIWYG" show-fields="row/column/content"/>
+                <checkbox-item value="Block" show-fields="row/column/block"/>
+            </text>
+            <text identifier="heading" label="Heading" required="true"/>
+            <asset type="file" identifier="image" label="Select Image" required="true"/>
+            <text identifier="alt" label="Image Alt Text" required="true"/>
+            <text type="dropdown" identifier="type" label="Link Type" default="None">
+                <dropdown-item value="None"/>
+                <dropdown-item value="Internal" show-fields="row/column/internal"/>
+                <dropdown-item value="Custom" show-fields="row/column/custom"/>
+            </text>
+            <asset type="page,file,symlink" identifier="internal" label="Image Link" required="true"/>
+            <text identifier="custom" label="Custom URL" required="true"/>
+            <text wysiwyg="true" identifier="content" label="Content" required="true"/>
+            <asset type="block" identifier="block" label="Block Content" render-content-depth="2" required="true"/>
+        </group>
+    </group>
+</system-data-structure>

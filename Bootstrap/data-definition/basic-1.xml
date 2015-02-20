@@ -1,0 +1,12 @@
+<system-data-structure>
+    <text type="dropdown" identifier="number" label="Number of Columns">
+        <dropdown-item value="1" show-fields="column1"/>
+        <dropdown-item value="2" show-fields="column1, column2"/>
+        <dropdown-item value="3" show-fields="column1, column2, column3"/>
+        <dropdown-item value="4" show-fields="column1, column2, column3, column4"/>
+    </text>
+    <text wysiwyg="true" identifier="column1" label="Column 1"/>
+    <text wysiwyg="true" identifier="column2" label="Column 2"/>
+    <text wysiwyg="true" identifier="column3" label="Column 3"/>
+    <text wysiwyg="true" identifier="column4" label="Column 4"/>
+</system-data-structure>
