@@ -1,0 +1,24 @@
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <xsl:output indent="yes" omit-xml-declaration="yes"/>
+    <xsl:template match="/system-index-block/calling-page/system-page">
+        <xsl:variable name="number" select="system-data-structure/number"/>
+        <xsl:variable name="width" select="12 div $number"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>
+                    <xsl:value-of select="title"/>
+                </h1>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <xsl:for-each select="system-data-structure/*[contains(name(),'column')][node()]">
+                <xsl:if test="position() &lt;= $number">
+                    <div class="col-xs-12 col-md-{$width}">
+                        <xsl:copy-of select="./node()"/>
+                    </div>
+                </xsl:if>
+            </xsl:for-each>
+        </div>
+    </xsl:template>
+</xsl:stylesheet>

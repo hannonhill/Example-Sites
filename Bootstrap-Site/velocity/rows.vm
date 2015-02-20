@@ -1,0 +1,25 @@
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+#set ( $data = $page.getChild("system-data-structure") )
+
+#set ( $title = $_EscapeTool.xml($page.getChild("title").value) )
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1>${title}</h1>
+    </div>
+</div>
+
+#set ( $rows = $_XPathTool.selectNodes($data, "row") )
+#foreach ( $row in $rows )
+    <hr/>
+    <div class="row">
+        #set ( $wysiwygs = $_XPathTool.selectNodes($row, "content") )
+        ## Calculate the column size for the grid row.
+        #set ( $width = 12 / $wysiwygs.size() )
+        #foreach ( $wysiwyg in $wysiwygs )
+            <div class="col-xs-12 col-md-${width}">
+                $_SerializerTool.serialize($wysiwyg, true)
+            </div>
+        #end
+    </div>
+#end
