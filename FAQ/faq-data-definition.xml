@@ -1,0 +1,4 @@
+<system-data-structure>
+    <text identifier="question" label="Question"/>
+    <text identifier="answer" label="Answer"/>
+</system-data-structure>

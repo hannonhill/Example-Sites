@@ -1,0 +1,38 @@
+#set ( $blocks = $_XPathTool.selectNodes($contentRoot, "/system-index-block/system-block[system-data-structure[question!=''][answer!='']]") )
+
+#if ( $blocks.size() > 0 )
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <ol>
+            #foreach ( $block in $blocks )
+                #set ( $data = $block.getChild("system-data-structure") )
+                #set ( $q = $data.getChild("question") )
+                <li><a href="#q${foreach.count}">$_EscapeTool.xml($q.value)</a></li>
+            #end
+            </ol>
+        </div>
+    </div>
+</div>
+<hr/>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <ol>
+            #foreach ( $block in $blocks )
+                #set ( $data = $block.getChild("system-data-structure") )
+                #set ( $q = $data.getChild("question") )
+                #set ( $a = $data.getChild("answer") )
+                <li name="q${foreach.count}">
+                    <strong>$_EscapeTool.xml($q.value)</strong>
+                    <br/>
+                    $_EscapeTool.xml($a.value)
+                </li>
+            #end
+            </ol>
+        </div>
+    </div>
+</div>
+#end

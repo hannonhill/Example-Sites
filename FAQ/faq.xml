@@ -1,0 +1,49 @@
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <xsl:output indent="yes" omit-xml-declaration="yes"/>
+    <xsl:template match="/system-index-block">
+        <xsl:if test="count(system-block) &gt; 0">
+            <hr/>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ol>
+                            <xsl:apply-templates mode="q" select="system-block"/>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ol>
+                            <xsl:apply-templates mode="qa" select="system-block"/>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template match="system-block" mode="q">
+        <li>
+            <a>
+                <xsl:attribute name="href">
+                    <xsl:value-of select="concat('#q',position())"/>
+                </xsl:attribute>
+                <xsl:value-of select="system-data-structure/question"/>
+            </a>
+        </li>
+    </xsl:template>
+    <xsl:template match="system-block" mode="qa">
+        <li>
+            <xsl:attribute name="name">
+                <xsl:value-of select="concat('#q',position())"/>
+            </xsl:attribute>
+            <strong>
+                <xsl:value-of select="system-data-structure/question"/>
+            </strong>
+            <br/>
+            <xsl:value-of select="system-data-structure/answer"/>
+        </li>
+    </xsl:template>
+</xsl:stylesheet>
