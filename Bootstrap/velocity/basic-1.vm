@@ -1,31 +1,23 @@
 #set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
 #set ( $data = $page.getChild("system-data-structure") )
-#set ( $title = $_EscapeTool.xml($page.getChild("title").value) )
-## How many WYSIWYGs to show.
-#set ( $number = $data.getChild("number").value )
 
+## Calculate the column size for the grid.
+#set ( $width = 12 / $wysiwygs.size() )
+
+#set ( $title = $page.getChild("title") )
 <div class="row">
     <div class="col-xs-12">
-        <h1>${title}</h1>
+        <h1>$_EscapeTool.xml($title.value)</h1>
     </div>
 </div>
 
 <hr/>
 
 <div class="row">
-## Select all WYSIWYGs (nodes with 'column' in the name) that have content.
-#set ( $wysiwygs = $_XPathTool.selectNodes($data, "*[contains(name(), 'column')][node()]") )
-## Calculate the column size for the grid.
-#set ( $width = 12 / $_MathTool.toInteger($number) )
+#set ( $wysiwygs = $_XPathTool.selectNodes($data, "content") )
 #foreach ( $wysiwyg in $wysiwygs )
     <div class="col-xs-12 col-md-${width}">
         $_SerializerTool.serialize($wysiwyg, true)
     </div>
-    
-    ## This is here to limit how many WYSIWYGs get displayed.
-    ## Technically, hidden WYSIWYGs with content will get stored.
-    #if ( $foreach.count == $number )
-        #break
-    #end
 #end
 </div>
