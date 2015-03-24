@@ -1,10 +1,8 @@
 #set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
 #set ( $data = $page.getChild("system-data-structure") )
 
-## How many WYSIWYGs to show.
-#set ( $number = $data.getChild("number").value )
 ## Calculate the column size for the grid.
-#set ( $width = 12 / $_MathTool.toInteger($number) )
+#set ( $width = 12 / $wysiwygs.size() )
 
 #set ( $title = $page.getChild("title") )
 <div class="row">
@@ -16,16 +14,10 @@
 <hr/>
 
 <div class="row">
-## Select all WYSIWYGs that have content.
-#set ( $wysiwygs = $_XPathTool.selectNodes($data, "*[contains(name(), 'column')][node()]") )
+#set ( $wysiwygs = $_XPathTool.selectNodes($data, "content") )
 #foreach ( $wysiwyg in $wysiwygs )
     <div class="col-xs-12 col-md-${width}">
         $_SerializerTool.serialize($wysiwyg, true)
     </div>
-    
-    ## Limit how many WYSIWYGs get displayed.
-    #if ( $foreach.count == $number )
-        #break
-    #end
 #end
 </div>
