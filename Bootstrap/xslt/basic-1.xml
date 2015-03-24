@@ -25,8 +25,4 @@
             </xsl:for-each>
         </div>
     </xsl:template>
-<<<<<<< HEAD
 </xsl:stylesheet>
-=======
-</xsl:stylesheet>
->>>>>>> FETCH_HEAD
