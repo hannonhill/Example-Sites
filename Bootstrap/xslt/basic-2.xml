@@ -1,10 +1,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output indent="yes" omit-xml-declaration="yes"/>
     <xsl:template match="/system-index-block/calling-page/system-page">
-        <!-- How many WYSIWYGs to show. -->
-        <xsl:variable name="number" select="system-data-structure/number"/>
         <!-- Calculate the column size for the grid. -->
-        <xsl:variable name="width" select="12 div $number"/>
+        <xsl:variable name="width" select="12 div count(system-data-structure/content)"/>
         <div class="row">
             <div class="col-xs-12">
                 <h1>
@@ -14,15 +12,16 @@
         </div>
         <hr/>
         <div class="row">
-            <!-- Select all WYSIWYGs that have content. -->
-            <xsl:for-each select="system-data-structure/*[contains(name(),'column')][node()]">
-                <!-- Limit how many WYSIWYGs get displayed. -->
-                <xsl:if test="position() &lt;= $number">
-                    <div class="col-xs-12 col-md-{$width}">
-                        <xsl:copy-of select="./node()"/>
-                    </div>
-                </xsl:if>
-            </xsl:for-each>
+            <!-- Loop through the WYSIWYGs. -->
+            <xsl:apply-templates select="system-data-structure/content">
+                <xsl:with-param name="colWidth" select="$width"/>
+            </xsl:apply-templates>
+        </div>
+    </xsl:template>
+    <xsl:template match="content">
+        <xsl:param name="colWidth"/>
+        <div class="col-xs-12 col-md-{$colWidth}">
+            <xsl:copy-of select="./node()"/>
         </div>
     </xsl:template>
 </xsl:stylesheet>
