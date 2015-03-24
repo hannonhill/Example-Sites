@@ -20,6 +20,14 @@ Taking a step forward adds the option of having multiple rows using the same WYS
 
 The final step adds more types of content than just a WYSIWYG for each column in the rows. Users can choose from text headings, images, links, WYSIWYGs, and block content.
 
+###Rows Sidebar
+
+The Rows example using a different Template that has a dynamic navigation.
+
+###Advanced Sidebar
+
+The Advanced example using a different Template that has a dynamic navigation.
+
 ##Code
 
 The examples are built in XSLT and Velocity to offer more options.
