@@ -1,4 +1,5 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output indent="yes" omit-xml-declaration="yes"/>
     <xsl:template match="/system-index-block/calling-page/system-page">
         <div class="row">
@@ -8,45 +9,53 @@
                 </h1>
             </div>
         </div>
+        <!-- Loop through the rows. -->
         <xsl:apply-templates select="system-data-structure/row"/>
     </xsl:template>
     <xsl:template match="row">
         <hr/>
         <div class="row">
-            <xsl:variable name="numColumns" select="count(column)"/>
+            <!-- Loop through the column containers. -->
             <xsl:apply-templates select="column">
-                <xsl:with-param name="width" select="12 div $numColumns"/>
+                <!-- Calculate the column size for this row of the grid. -->
+                <xsl:with-param name="width" select="12 div count(column)"/>
             </xsl:apply-templates>
         </div>
     </xsl:template>
     <xsl:template match="column">
         <xsl:param name="width"/>
         <div class="col-xs-12 col-md-{$width}">
+            <!-- Did they actually select Heading from the features list? -->
             <xsl:if test="features[value='Heading']/value">
                 <h2>
                     <xsl:value-of select="heading"/>
                 </h2>
             </xsl:if>
+            <!-- Did they actually select Image+Link from the features list? -->
             <xsl:if test="features[value='Image+Link']/value">
-                <xsl:choose>
-                    <xsl:when test="type = 'Internal'">
-                        <a href="{internal/link}">
+                <p>
+                    <xsl:choose>
+                        <xsl:when test="type = 'Internal'">
+                            <a href="{internal/link}">
+                                <xsl:call-template name="makeImage"/>
+                            </a>
+                        </xsl:when>
+                        <xsl:when test="type = 'Custom'">
+                            <a href="{custom}">
+                                <xsl:call-template name="makeImage"/>
+                            </a>
+                        </xsl:when>
+                        <xsl:otherwise>
                             <xsl:call-template name="makeImage"/>
-                        </a>
-                    </xsl:when>
-                    <xsl:when test="type = 'Custom'">
-                        <a href="{custom}">
-                            <xsl:call-template name="makeImage"/>
-                        </a>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:call-template name="makeImage"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </p>
             </xsl:if>
+            <!-- Did they actually select WYSIWYG from the features list? -->
             <xsl:if test="features[value='WYSIWYG']/value">
                 <xsl:copy-of select="content/node()"/>
             </xsl:if>
+            <!-- Did they actually select Block from the features list? -->
             <xsl:if test="features[value='Block']/value">
                 <xsl:copy-of select="block/content/node()"/>
             </xsl:if>
