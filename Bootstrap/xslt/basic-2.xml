@@ -16,15 +16,12 @@
             <xsl:apply-templates select="system-data-structure/content">
                 <xsl:with-param name="colWidth" select="$width"/>
             </xsl:apply-templates>
-<<<<<<< HEAD
         </div>
     </xsl:template>
     <xsl:template match="content">
         <xsl:param name="colWidth"/>
         <div class="col-xs-12 col-md-{$colWidth}">
             <xsl:copy-of select="./node()"/>
-=======
->>>>>>> FETCH_HEAD
         </div>
     </xsl:template>
     <xsl:template match="content">
