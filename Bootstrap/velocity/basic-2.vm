@@ -1,12 +1,9 @@
 #set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
 #set ( $data = $page.getChild("system-data-structure") )
 
-<<<<<<< HEAD
-=======
 ## Calculate the column size for the grid.
 #set ( $width = 12 / $wysiwygs.size() )
 
->>>>>>> FETCH_HEAD
 #set ( $title = $page.getChild("title") )
 <div class="row">
     <div class="col-xs-12">
@@ -17,14 +14,11 @@
 <hr/>
 
 <div class="row">
-<<<<<<< HEAD
 ## Select all WYSIWYGs.
 #set ( $wysiwygs = $_XPathTool.selectNodes($data, "content") )
 ## Calculate the column size for the grid.
 #set ( $width = 12 / $wysiwygs.size() )
-=======
 #set ( $wysiwygs = $_XPathTool.selectNodes($data, "content") )
->>>>>>> FETCH_HEAD
 #foreach ( $wysiwyg in $wysiwygs )
     <div class="col-xs-12 col-md-${width}">
         $_SerializerTool.serialize($wysiwyg, true)
