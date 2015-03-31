@@ -1,0 +1,248 @@
+<xsl:stylesheet
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <xsl:output indent="yes" omit-xml-declaration="yes"/>
+    <xsl:template match="/system-index-block/calling-page/system-page">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>
+                    <xsl:value-of select="title"/>
+                </h1>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-xs-12">
+                <div role="tabpanel">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <xsl:apply-templates mode="tablist" select="system-data-structure/tab"/>
+                    </ul>
+                    <div class="tab-content">
+                        <xsl:apply-templates mode="tabcontent" select="system-data-structure/tab"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </xsl:template>
+    <xsl:template match="tab" mode="tablist">
+        <li role="presentation">
+            <xsl:choose>
+                <xsl:when test="position() = 1">
+                    <xsl:attribute name="class">active</xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
+            <a data-toggle="tab" role="tab">
+                <xsl:attribute name="href">
+                    <xsl:value-of select="concat('#tab',position())"/>
+                </xsl:attribute>
+                <xsl:attribute name="aria-controls">
+                    <xsl:value-of select="concat('tab',position())"/>
+                </xsl:attribute>
+                <xsl:value-of select="title"/>
+            </a>
+        </li>
+    </xsl:template>
+    <xsl:template match="tab" mode="tabcontent">
+        <div role="tabpanel">
+            <xsl:attribute name="id">
+                <xsl:value-of select="concat('tab',position())"/>
+            </xsl:attribute>
+            <xsl:attribute name="class">
+                <xsl:choose>
+                    <xsl:when test="position() = 1">tab-pane active</xsl:when>
+                    <xsl:otherwise>tab-pane</xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <tbody>
+                        <xsl:apply-templates select="group"/>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </xsl:template>
+    <xsl:template match="group">
+        <tr>
+            <td class="col-xs-6">
+                <xsl:value-of select="title"/>
+            </td>
+            <td class="col-xs-6">
+                <!-- Facebook -->
+                <xsl:choose>
+                    <xsl:when test="accounts[value='Facebook']/value and facebook!=''">
+                        <a class="accountIcon" href="{facebook}" target="_blank" title="Link to external website">
+                            <xsl:call-template name="makeIcon">
+                                <xsl:with-param name="icon">facebook</xsl:with-param>
+                                <xsl:with-param name="color">facebook</xsl:with-param>
+                            </xsl:call-template>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeIcon">
+                            <xsl:with-param name="icon">facebook</xsl:with-param>
+                            <xsl:with-param name="color">text-light</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <!-- Twitter -->
+                <xsl:choose>
+                    <xsl:when test="accounts[value='Twitter']/value and twitter!=''">
+                        <a class="accountIcon" href="{twitter}" target="_blank" title="Link to external website">
+                            <xsl:call-template name="makeIcon">
+                                <xsl:with-param name="icon">twitter</xsl:with-param>
+                                <xsl:with-param name="color">twitter</xsl:with-param>
+                            </xsl:call-template>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeIcon">
+                            <xsl:with-param name="icon">twitter</xsl:with-param>
+                            <xsl:with-param name="color">text-light</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <!-- Instagram -->
+                <xsl:choose>
+                    <xsl:when test="accounts[value='Instagram']/value and instagram!=''">
+                        <a class="accountIcon" href="{instagram}" target="_blank" title="Link to external website">
+                            <xsl:call-template name="makeIcon">
+                                <xsl:with-param name="icon">instagram</xsl:with-param>
+                                <xsl:with-param name="color">instagram</xsl:with-param>
+                            </xsl:call-template>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeIcon">
+                            <xsl:with-param name="icon">instagram</xsl:with-param>
+                            <xsl:with-param name="color">text-light</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <!-- YouTube -->
+                <xsl:choose>
+                    <xsl:when test="accounts[value='YouTube']/value and youtube!=''">
+                        <a class="accountIcon" href="{youtube}" target="_blank" title="Link to external website">
+                            <xsl:call-template name="makeIcon">
+                                <xsl:with-param name="icon">youtube</xsl:with-param>
+                                <xsl:with-param name="color">youtube</xsl:with-param>
+                            </xsl:call-template>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeIcon">
+                            <xsl:with-param name="icon">youtube</xsl:with-param>
+                            <xsl:with-param name="color">text-light</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <!-- LinkedIn -->
+                <xsl:choose>
+                    <xsl:when test="accounts[value='LinkedIn']/value and linkedin!=''">
+                        <a class="accountIcon" href="{linkedin}" target="_blank" title="Link to external website">
+                            <xsl:call-template name="makeIcon">
+                                <xsl:with-param name="icon">linkedin</xsl:with-param>
+                                <xsl:with-param name="color">linkedin</xsl:with-param>
+                            </xsl:call-template>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeIcon">
+                            <xsl:with-param name="icon">linkedin</xsl:with-param>
+                            <xsl:with-param name="color">text-light</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <!-- Google+ -->
+                <xsl:choose>
+                    <xsl:when test="accounts[value='Google Plus']/value and googleplus!=''">
+                        <a class="accountIcon" href="{googleplus}" target="_blank" title="Link to external website">
+                            <xsl:call-template name="makeIcon">
+                                <xsl:with-param name="icon">google-plus</xsl:with-param>
+                                <xsl:with-param name="color">googleplus</xsl:with-param>
+                            </xsl:call-template>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeIcon">
+                            <xsl:with-param name="icon">google-plus</xsl:with-param>
+                            <xsl:with-param name="color">text-light</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <!-- Pinterest -->
+                <xsl:choose>
+                    <xsl:when test="accounts[value='Pinterest']/value and pinterest!=''">
+                        <a class="accountIcon" href="{pinterest}" target="_blank" title="Link to external website">
+                            <xsl:call-template name="makeIcon">
+                                <xsl:with-param name="icon">pinterest</xsl:with-param>
+                                <xsl:with-param name="color">pinterest</xsl:with-param>
+                            </xsl:call-template>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeIcon">
+                            <xsl:with-param name="icon">pinterest</xsl:with-param>
+                            <xsl:with-param name="color">text-light</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <!-- iTunes -->
+                <xsl:choose>
+                    <xsl:when test="accounts[value='iTunes']/value and itunes!=''">
+                        <a class="accountIcon" href="{itunes}" target="_blank" title="Link to external website">
+                            <xsl:call-template name="makeIcon">
+                                <xsl:with-param name="icon">music</xsl:with-param>
+                                <xsl:with-param name="color">itunes</xsl:with-param>
+                            </xsl:call-template>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeIcon">
+                            <xsl:with-param name="icon">music</xsl:with-param>
+                            <xsl:with-param name="color">text-light</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <!-- Flickr -->
+                <xsl:choose>
+                    <xsl:when test="accounts[value='Flickr']/value and flickr!=''">
+                        <a class="accountIcon" href="{flickr}" target="_blank" title="Link to external website">
+                            <xsl:call-template name="makeIcon">
+                                <xsl:with-param name="icon">flickr</xsl:with-param>
+                                <xsl:with-param name="color">flickr</xsl:with-param>
+                            </xsl:call-template>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeIcon">
+                            <xsl:with-param name="icon">flickr</xsl:with-param>
+                            <xsl:with-param name="color">text-light</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <!-- Vimeo -->
+                <xsl:choose>
+                    <xsl:when test="accounts[value='Vimeo']/value and vimeo!=''">
+                        <a class="accountIcon" href="{vimeo}" target="_blank" title="Link to external website">
+                            <xsl:call-template name="makeIcon">
+                                <xsl:with-param name="icon">vimeo-square</xsl:with-param>
+                                <xsl:with-param name="color">vimeo</xsl:with-param>
+                            </xsl:call-template>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeIcon">
+                            <xsl:with-param name="icon">vimeo-square</xsl:with-param>
+                            <xsl:with-param name="color">text-light</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </td>
+        </tr>
+    </xsl:template>
+    <xsl:template name="makeIcon">
+        <xsl:param name="icon"/>
+        <xsl:param name="color"/>
+        <span class="fa fa-fw fa-lg fa-{$icon} {$color}"></span>
+    </xsl:template>
+</xsl:stylesheet>

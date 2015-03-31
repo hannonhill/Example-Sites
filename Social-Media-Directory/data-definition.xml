@@ -1,0 +1,30 @@
+<system-data-structure>
+    <group identifier="tab" label="Tab" multiple="true" collapsed="true">
+        <text identifier="title" label="Title"/>
+        <group identifier="group" label="Group" multiple="true" collapsed="true">
+            <text identifier="title" label="Title"/>
+            <text type="checkbox" identifier="accounts" label="Social Media Accounts">
+                <checkbox-item value="Facebook" show-fields="tab/group/facebook"/>
+                <checkbox-item value="Twitter" show-fields="tab/group/twitter"/>
+                <checkbox-item value="Instagram" show-fields="tab/group/instagram"/>
+                <checkbox-item value="YouTube" show-fields="tab/group/youtube"/>
+                <checkbox-item value="LinkedIn" show-fields="tab/group/linkedin"/>
+                <checkbox-item value="Google Plus" show-fields="tab/group/googleplus"/>
+                <checkbox-item value="Pinterest" show-fields="tab/group/pinterest"/>
+                <checkbox-item value="iTunes" show-fields="tab/group/itunes"/>
+                <checkbox-item value="Flickr" show-fields="tab/group/flickr"/>
+                <checkbox-item value="Vimeo" show-fields="tab/group/vimeo"/>
+            </text>
+            <text identifier="facebook" label="Facebook Account URL"/>
+            <text identifier="twitter" label="Twitter Account URL"/>
+            <text identifier="instagram" label="Instagram Account URL"/>
+            <text identifier="youtube" label="YouTube Account URL"/>
+            <text identifier="linkedin" label="LinkedIn Account URL"/>
+            <text identifier="googleplus" label="Google+ Account URL"/>
+            <text identifier="pinterest" label="Pinterest Account URL"/>
+            <text identifier="itunes" label="iTunes Account URL"/>
+            <text identifier="flickr" label="Flickr Account URL"/>
+            <text identifier="vimeo" label="Vimeo Account URL"/>
+        </group>
+    </group>
+</system-data-structure>

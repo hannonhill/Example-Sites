@@ -1,0 +1,126 @@
+#set ( $page = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page") )
+#set ( $data = $page.getChild("system-data-structure") )
+#set ( $title = $page.getChild("title") )
+#set ( $tabs = $_XPathTool.selectNodes($data, "tab") )
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1>$_EscapeTool.xml($title.value)</h1>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-xs-12">
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+            #set ( $tabfirst = "active" )
+            #foreach ( $tab in $tabs )
+                #set ( $tabtitle = $tab.getChild("title") )
+                <li role="presentation" class="${tabfirst}"><a href="#tab${foreach.count}" aria-controls="tab${foreach.count}" role="tab" data-toggle="tab">$_EscapeTool.xml($tabtitle.value)</a></li>
+                #set ( $tabfirst = "" )
+            #end
+            </ul>
+            <div class="tab-content">
+            #set ( $panelfirst = "active" )
+            #foreach ( $tab in $tabs )
+                #set ( $groups = $_XPathTool.selectNodes($tab, "group") )
+                <div role="tabpanel" class="tab-pane ${panelfirst}" id="tab${foreach.count}">
+                    <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                    <tbody>
+                    #foreach ( $group in $groups )
+                        #set ( $grouptitle = $group.getChild("title") )
+                        <tr>
+                            <td class="col-xs-6">$_EscapeTool.xml($grouptitle.value)</td>
+                            <td class="col-xs-6">
+                            ## Facebook
+                            #if ( $_XPathTool.selectNodes($group, "accounts[value='Facebook']/value") && $group.getChild("facebook").value != "" )
+                                #set ( $facebook = $_EscapeTool.xml($group.getChild("facebook").value) )
+                                #makeLink($facebook, "facebook", "")
+                            #else
+                                #makeIcon("facebook", "text-light")
+                            #end
+                            ## Twitter
+                            #if ( $_XPathTool.selectNodes($group, "accounts[value='Twitter']/value") && $group.getChild("twitter").value != "" )
+                                #set ( $twitter = $_EscapeTool.xml($group.getChild("twitter").value) )
+                                #makeLink($twitter, "twitter", "")
+                            #else
+                                #makeIcon("twitter", "text-light")
+                            #end
+                            ## Instagram
+                            #if ( $_XPathTool.selectNodes($group, "accounts[value='Instagram']/value") && $group.getChild("instagram").value != "" )
+                                #set ( $instagram = $_EscapeTool.xml($group.getChild("instagram").value) )
+                                #makeLink($instagram, "instagram", "")
+                            #else
+                                #makeIcon("instagram", "text-light")
+                            #end
+                            ## YouTube
+                            #if ( $_XPathTool.selectNodes($group, "accounts[value='YouTube']/value") && $group.getChild("youtube").value != "" )
+                                #set ( $youtube = $_EscapeTool.xml($group.getChild("youtube").value) )
+                                #makeLink($youtube, "youtube", "")
+                            #else
+                                #makeIcon("youtube", "text-light")
+                            #end
+                            ## LinkedIn
+                            #if ( $_XPathTool.selectNodes($group, "accounts[value='LinkedIn']/value") && $group.getChild("linkedin").value != "" )
+                                #set ( $linkedin = $_EscapeTool.xml($group.getChild("linkedin").value) )
+                                #makeLink($linkedin, "linkedin", "")
+                            #else
+                                #makeIcon("linkedin", "text-light")
+                            #end
+                            ## Google+
+                            #if ( $_XPathTool.selectNodes($group, "accounts[value='Google Plus']/value") && $group.getChild("googleplus").value != "" )
+                                #set ( $googleplus = $_EscapeTool.xml($group.getChild("googleplus").value) )
+                                #makeLink($googleplus, "google-plus", "")
+                            #else
+                                #makeIcon("google-plus", "text-light")
+                            #end
+                            ## Pinterest
+                            #if ( $_XPathTool.selectNodes($group, "accounts[value='Pinterest']/value") && $group.getChild("pinterest").value != "" )
+                                #set ( $pinterest = $_EscapeTool.xml($group.getChild("pinterest").value) )
+                                #makeLink($pinterest, "pinterest", "")
+                            #else
+                                #makeIcon("pinterest", "text-light")
+                            #end
+                            ## iTunes
+                            #if ( $_XPathTool.selectNodes($group, "accounts[value='iTunes']/value") && $group.getChild("itunes").value != "" )
+                                #set ( $itunes = $_EscapeTool.xml($group.getChild("itunes").value) )
+                                #makeLink($facebook, "music", "")
+                            #else
+                                #makeIcon("music", "text-light")
+                            #end
+                            ## Flickr
+                            #if ( $_XPathTool.selectNodes($group, "accounts[value='Flickr']/value") && $group.getChild("flickr").value != "" )
+                                #set ( $flickr = $_EscapeTool.xml($group.getChild("flickr").value) )
+                                #makeLink($flickr, "flickr", "")
+                            #else
+                                #makeIcon("flickr", "text-light")
+                            #end
+                            ## Vimeo
+                            #if ( $_XPathTool.selectNodes($group, "accounts[value='Vimeo']/value") && $group.getChild("vimeo").value != "" )
+                                #set ( $vimeo = $_EscapeTool.xml($group.getChild("vimeo").value) )
+                                #makeLink($vimeo, "vimeo-square", "")
+                            #else
+                                #makeIcon("vimeo-square", "text-light")
+                            #end
+                            </td>
+                        </tr>
+                    #end
+                    </tbody>
+                    </table>
+                    </div>
+                </div>
+                #set ( $panelfirst = "" )
+            #end
+            </div>
+        </div>
+    </div>
+</div>
+
+#macro ( makeLink $href $icon $color )
+    <a class="accountIcon" href="${href}" target="_blank" title="Link to external website">#makeIcon($icon, $color)</a>
+#end
+
+#macro ( makeIcon $account $text )
+    <span class="fa fa-fw fa-lg fa-${account} ${text}"></span>
+#end
