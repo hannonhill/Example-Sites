@@ -10,12 +10,12 @@ Before users can create Forms, it is necessary to setup the Content Type for the
 
 ### Form Content Type
 
-- [Form Data Definition.xml](https://github.com/hannonhill/Velocity-Cookbook/tree/master/PHP-Form-Builder/form/form-data-definition.xml) (Data Definition)
-- [form-display.vm](https://github.com/hannonhill/Velocity-Cookbook/tree/master/PHP-Form-Builder/form/form-display.vm) (Velocity Format)
+- [Form Data Definition.xml](https://github.com/hannonhill/Example-Sites/blob/master/PHP-Form-Builder/form/form-data-definition.xml) (Data Definition)
+- [form-display.vm](https://github.com/hannonhill/Example-Sites/blob/master/PHP-Form-Builder/form/form-display.vm) (Velocity Format)
 
 ### Form Config
 
-- [Form Config Data Definition.xml](https://github.com/hannonhill/Velocity-Cookbook/tree/master/PHP-Form-Builder/form-config/form-config-data-definition.xml) (Data Definition)
+- [Form Config Data Definition.xml](https://github.com/hannonhill/Example-Sites/blob/master/PHP-Form-Builder/form-config/form-config-data-definiton.xml) (Data Definition)
 - Sample authentication file content:
 ```
 <?php
@@ -28,10 +28,10 @@ $auth = array(
 
 ### Optional Results Content Type
 
-- [Generic Results Data Definition.xml](https://github.com/hannonhill/Velocity-Cookbook/tree/master/PHP-Form-Builder/results/generic-results-data-definition.xml) (Data Definition)
-- [generic-result.vm](https://github.com/hannonhill/Velocity-Cookbook/tree/master/PHP-Form-Builder/results/generic-results.vm) (Velocity Format)
-- [Custom Results Data Definition.xml](https://github.com/hannonhill/Velocity-Cookbook/tree/master/PHP-Form-Builder/results/custom-results-data-definition.xml) (Data Definition Example: will need to be modified based on form)
-- [custom-results.vm](https://github.com/hannonhill/Velocity-Cookbook/tree/master/PHP-Form-Builder/results/custom-results.vm) (Velocity Format Example: will need to be modified based on form)
+- [Generic Results Data Definition.xml](https://github.com/hannonhill/Example-Sites/blob/master/PHP-Form-Builder/results/generic-results-data-definition.xml) (Data Definition)
+- [generic-result.vm](https://github.com/hannonhill/Example-Sites/blob/master/PHP-Form-Builder/results/generic-results.vm) (Velocity Format)
+- [Custom Results Data Definition.xml](https://github.com/hannonhill/Example-Sites/blob/master/PHP-Form-Builder/results/custom-results-data-definition.xml) (Data Definition Example: will need to be modified based on form)
+- [custom-results.vm](https://github.com/hannonhill/Example-Sites/blob/master/PHP-Form-Builder/results/custom-results.vm) (Velocity Format Example: will need to be modified based on form)
 
 ## Creating the Form Content Type
 
