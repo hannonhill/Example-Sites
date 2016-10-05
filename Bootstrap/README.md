@@ -16,3 +16,5 @@ The page has multiple options:
 Options when creating page content:
 * Multiple Rows - Using the "+" you can have as many rows as you would like
 * Multiple Columns - Each row can have up to 4 Columns
+
+Exported from Cascade 8.0.1
