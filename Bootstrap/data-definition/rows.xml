@@ -1,5 +1,0 @@
-<system-data-structure>
-    <group identifier="row" label="Row" multiple="true" maximum-number="4" collapsed="true">
-        <text wysiwyg="true" identifier="content" label="Content Column" multiple="true" maximum-number="4" required="true"/>
-    </group>
-</system-data-structure>
