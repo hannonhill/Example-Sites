@@ -1,0 +1,34 @@
+<system-data-structure>
+	<group identifier="options" label="Page Options">
+		<text type="radiobutton" identifier="showNav" label="Show Left Navigation?" default="Yes" help-text="Would you like to display the Left Navigation?">
+			<radio-item value="Yes"/>
+			<radio-item value="No"/>
+		</text>
+		<text type="radiobutton" identifier="addCarousel" label="Add Carousel?" default="No" help-text="Would you like to include an Image Carousel?">
+			<radio-item value="Yes" show-fields="carousel"/>
+			<radio-item value="No"/>
+		</text>
+		<text type="radiobutton" identifier="showIntro" label="Show Intro?" default="No" help-text="Would you like to use a Page Intro Section?">
+			<radio-item value="Yes" show-fields="intro"/>
+			<radio-item value="No"/>
+		</text>
+	</group>
+	<group identifier="carousel" label="Carousel" collapsed="true">
+		<group identifier="item" label="Item" multiple="true" minimum-number="2" collapsed="true">
+			<asset type="file" identifier="image" label="Image" help-text="Select Image to be used in Carousel"/>
+			<text identifier="heading" label="Heading" help-text="Enter Text to be displayed under image"/>
+		</group>
+	</group>
+	<group identifier="intro" label="Page Intro" collapsed="true">
+		<text type="radiobutton" identifier="jumbo" label="Make Jumbotron?" default="Yes" help-text="This will add custom styling around the Text entered below">
+			<radio-item value="Yes"/>
+			<radio-item value="No"/>
+		</text>
+		<text wysiwyg="true" identifier="content" label="Content"/>
+	</group>
+	<group identifier="row" label="Row" multiple="true" minimum-number="1" collapsed="true">
+		<group identifier="col" label="Column" multiple="true" maximum-number="4" minimum-number="1">
+			<text wysiwyg="true" identifier="content" label="Content"/>
+		</group>
+	</group>
+</system-data-structure>
