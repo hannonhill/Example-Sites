@@ -6,28 +6,13 @@ Like many frameworks, Bootstrap offers a fluid (or fixed) grid system that scale
 
 The question is, how do you structure your Cascade Server implementation to easily allow content contributors to create and edit responsive content that uses the framework's expected XHTML markup? And the answer lies within the power of the Data Definition and Format.
 
-##Examples
+##Options
+The page has multiple options:
+* Display Left Navigation - this toggles on or off the left navigation, by showing/hiding the left navigation you alter the width of the main content area as well
+* Show Carousel - this will display the options for a "Responsive Image Slider" as well as the Carousel itself on the page
+* Show Intro - this will display the options for the "Intro Text" as well as the Intro itself on the page
 
-###Basic
-
-The two basic examples involve working with a dynamic number of WYSIWYGs for a single row. The number of WYSIWYGs present determines how many columns the layout will have. There are two methods to implement this example available.
-
-###Rows
-
-Taking a step forward adds the option of having multiple rows using the same WYSIWYG logic from the basic example.
-
-###Advanced
-
-The final step adds more types of content than just a WYSIWYG for each column in the rows. Users can choose from text headings, images, links, WYSIWYGs, and block content.
-
-###Rows Sidebar
-
-The Rows example using a different Template that has a dynamic navigation.
-
-###Advanced Sidebar
-
-The Advanced example using a different Template that has a dynamic navigation.
-
-##Code
-
-The examples are built in XSLT and Velocity to offer more options.
+##Content Options
+Options when creating page content:
+* Multiple Rows - Using the "+" you can have as many rows as you would like
+* Multiple Columns - Each row can have up to 4 Columns
