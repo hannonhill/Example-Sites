@@ -1,0 +1,27 @@
+#set ( $blocks = $_XPathTool.selectNodes($contentRoot, "/system-index-block/system-block[system-data-structure[question!=''][answer!='']]") )
+
+#if ( $blocks.size() > 0 )
+<div class="container">
+    <div class="row col-xs-12">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            #foreach ( $block in $blocks )
+                #set ( $data = $block.getChild("system-data-structure") )
+                #set ( $q = $data.getChild("question") )
+                #set ( $a = $data.getChild("answer") )
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading$foreach.count">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse$foreach.count" aria-expanded="false" aria-controls="collapse$foreach.count" class="collapsed">
+                                $_EscapeTool.xml($q.value)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse$foreach.count" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading$foreach.count">
+                        <p style="padding: 10px;">$_EscapeTool.xml($a.value)</p>
+                    </div>
+                </div>
+            #end
+        </div>
+    </div>
+</div>
+#end
