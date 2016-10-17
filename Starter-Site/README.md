@@ -7,4 +7,4 @@ It contains:
 * Example Index Blocks for a variety of cases.
 * XML Template.
 
-Current Site was exported using Cascade Server version 7.4.1
+Current Site was exported using Cascade CMS version 8.0.2
