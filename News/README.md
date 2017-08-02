@@ -10,4 +10,6 @@ It contains:
 * RSS and Atom feed examples
 * Entire Site available in both Velocity and XSLT
 
-Current Site was exported using Cascade Server version 8.4
+Make sure to update the RSS Velocity format with the new site name so that the RSS feed will function correctly.
+
+Current Site was exported using Cascade Server version 8.5
