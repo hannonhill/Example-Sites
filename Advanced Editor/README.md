@@ -1,9 +1,9 @@
 Advanced Editor
 ============================
 
-This is an example of an Advanced Data Definition. It allows the end user to add multiple rows and columns as well as applying different widgetsfor each column.
+This is an example of an Advanced Data Definition. It allows the end user to add multiple rows and columns as well as applying different widgetsfor each column. There is also the needed parts to use the Bricks example as well.
 
-Widget Options:
+## Widget Options:
 - WYSIWYG
 - Tabs
 - Accordion
@@ -12,6 +12,6 @@ Widget Options:
 - News Listing
 - Event Listing
 
-Required Other Files:
+## Required Other Files:
 - https://getbootstrap.com/docs/3.3/css/
 - https://jquery.com/
