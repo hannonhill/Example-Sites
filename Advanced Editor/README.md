@@ -13,5 +13,5 @@ Widget Options:
 - Event Listing
 
 Required Other Files:
-- Bootstrap CSS
-- jQuery
+- https://getbootstrap.com/docs/3.3/css/
+- https://jquery.com/
