@@ -1,0 +1,43 @@
+<system-data-structure>
+	<text default="None" identifier="type" label="Feature Type" required="true" type="radiobutton">
+		<radio-item show-fields="image, alt" value="Banner"/>
+		<radio-item value="None"/>
+	</text>
+	<asset identifier="image" label="Image" type="file"/>
+	<text help-text="Please add alt text for accessibility compliance" identifier="alt" label="Alt Text" required="true"/>
+	<group collapsed="true" identifier="row" label="Row" multiple="true">
+		<group identifier="column" label="Column" multiple="true">
+			<text default="WYSIWYG" identifier="type" label="Type" type="radiobutton">
+				<radio-item show-fields="row/column/content" value="WYSIWYG"/>
+				<radio-item show-fields="row/column/item" value="Accordion"/>
+				<radio-item show-fields="row/column/item" value="Tabbed"/>
+				<radio-item show-fields="row/column/numberShow, row/column/categoryNews" value="News"/>
+				<radio-item show-fields="row/column/numberShow, row/column/categoryEvents" value="Events"/>
+				<radio-item show-fields="row/column/bioPage" value="Feature Bio"/>
+				<radio-item show-fields="row/column/callout, row/column/blockTitle" value="Callout"/>
+			</text>
+			<text identifier="content" label="Content" wysiwyg="true"/>
+			<text default="All" identifier="categoryNews" label="News Category" type="dropdown">
+				<dropdown-item value="All"/>
+				<dropdown-item value="Arts and Culture"/>
+				<dropdown-item value="Community"/>
+				<dropdown-item value="Events"/>
+				<dropdown-item value="Health"/>
+				<dropdown-item value="Academic Department"/>
+			</text>
+			<text default="All" identifier="categoryEvents" label="Events Category" type="dropdown">
+				<dropdown-item value="All"/>
+				<dropdown-item value="Admissions"/>
+				<dropdown-item value="Student Life"/>
+			</text>
+			<text identifier="numberShow" label="Number to Show" size="4"/>
+			<asset identifier="bioPage" label="Faculty Page" render-content-depth="5" type="page"/>
+			<text identifier="blockTitle" label="Section Title"/>
+			<asset identifier="callout" label="Callout" render-content-depth="5" type="block"/>
+			<group identifier="item" label="Accordion/Tabbed Item" multiple="true">
+				<text identifier="heading" label="Heading"/>
+				<text identifier="content" label="Content" wysiwyg="true"/>
+			</group>
+		</group>
+	</group>
+</system-data-structure>
