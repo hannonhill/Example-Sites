@@ -1,0 +1,250 @@
+<div class="container" style="margin-top:20px; margin-bottom: 92px;">
+
+## Brick Content, to use download the bricks example from the Cascade CMS Exchange
+
+#set ( $sib = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block") )
+
+#set ( $bricks = $_XPathTool.selectNodes($sib, "system-page/system-data-structure/brick") )
+#macro ( useBricks $contentString )
+    #set ( $string = $contentString )
+    
+    #foreach ( $item in $bricks )
+        #set ( $var = "\[" + $_EscapeTool.xml($item.getChild("name").value) + "\]" )
+        #set ( $val = $_EscapeTool.xml($item.getChild("value").value) )
+        #set ( $string = $string.replaceAll($var, $val) )
+    #end
+    ${string}
+#end
+
+
+## Page Content
+
+#set ( $data = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block/calling-page/system-page/system-data-structure") )
+
+#set ( $rows = $_XPathTool.selectNodes($data, "row") )
+#set ( $sidebar = $data.getChild("sidebar").value )
+#set ( $accorNum = 1 )
+#set ( $tabNum = 1 )
+
+#set ( $nav = $data.getChild("showNav").value )
+
+## Sets the main content column size if there is navigation set to show
+#if ( $nav == "Yes" )
+    #set ( $col = "9" )
+#else
+    #set ( $col = "12" )
+#end
+
+<div class="col-md-${col} col-sm-12">
+
+## Loop Through Rows
+#foreach ( $row in $rows )
+    #set ( $cols = $_XPathTool.selectNodes($row, "column") )
+    <div class="row sep">
+        
+    ## Loop Through Columns    
+    #foreach ( $col in $cols )
+        #if ( $cols.size() == 1 )
+            #set ( $num = 12 )
+        #elseif ( $cols.size() == 2 )
+            #set ( $num = 6 )
+        #elseif ( $cols.size() == 3 )
+            #set ( $num = 4 )
+        #else
+            #set ( $num = 3 )
+        #end
+        
+        ## Check type of content
+        #set ( $type = $col.getChild("type").value )
+        
+        #if ( $type == "WYSIWYG" )
+            #set ( $content = $_SerializerTool.serialize($col.getChild("content"), true) )
+
+            <div class="col-md-${num} col-sm-12">
+                #useBricks($content)
+            </div>
+        
+        ## Callouts are pulled from the block chooser
+        
+        #elseif ( $type == "Callout" ) 
+            <div class="col-md-${num}">
+            #set ( $data = $_XPathTool.selectSingleNode($col, "callout/content/system-data-structure") )
+            #set ( $sectionTitle = $_XPathTool.selectSingleNode($col, "blockTitle").value )
+            #set ( $content = $_XPathTool.selectSingleNode($col, "callout/content") )
+            #set ( $calloutType = $data.getChild("type").value )
+            
+            #if ( ${sectionTitle} != "" )
+                <h4>${sectionTitle}</h4>    
+            #end
+            
+            #if ( $calloutType == "WYSIWYG" )
+                #set ( $callout = $data.getChild("content") )
+                $_SerializerTool.serialize($callout, true)
+            #elseif ( $calloutType == "Image" )
+                #set ( $image = $_XPathTool.selectSingleNode($data, "image/link").value )
+                #set ( $link = $_XPathTool.selectSingleNode($data, "link/link").value )
+                <span class="img-responsive">
+                    #if ( $link )
+                        <a href="${link}"><img src="${image}" class="img-responsive" alt="Callout Image" /></a>
+                    #else
+                        <img src="${image}" class="img-responsive" alt="Callout Image" />
+                    #end
+                </span>
+            #else
+                $_SerializerTool.serialize($content, true)
+            #end
+            </div>
+            
+        #elseif ( $type == "Accordion" )
+            #set ( $accordion = $_XPathTool.selectNodes($col, "item") )
+            
+            <div class="panel-group col-md-${num} col-sm-12" id="accordion$accorNum">
+            #foreach ( $item in $accordion )
+                #set ( $heading = $item.getChild("heading").value )
+                #set ( $content = $item.getChild("content") )
+            
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title font-alt">
+                            <a data-toggle="collapse" data-parent="#accordion$accorNum" href="#support$foreach.count$accorNum" class="collapsed">
+                                $_EscapeTool.xml($heading)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="support$foreach.count$accorNum" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            $_SerializerTool.serialize($content, true) 
+                        </div>
+                    </div>
+                </div>
+            #end
+            </div>
+            #set ( $accorNum = $accorNum + 1 )
+        
+        #elseif ( $type == "Tabbed" )
+            #set ( $tab = $_XPathTool.selectNodes($col, "item") )
+            <div class="col-md-${num} col-sm-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    #foreach ( $item in $tab )
+                        #set ( $heading = $item.getChild("heading").value )
+                        
+                        #if ( $foreach.count == 1 )
+                            #set ( $active = "class='active'" )
+                        #else
+                            #set ( $active = "" )
+                        #end
+                            <li ${active}><a data-toggle="tab" href="#content$foreach.count$tabNum">$_EscapeTool.xml($heading)</a></li>
+                    #end
+                </ul>
+        
+                <div id="content" class="tab-content">
+                    #foreach ( $item in $tab )
+                        #if ( $foreach.count == 1 )
+                            #set ( $class = "tab-pane active" )
+                        #else  
+                            #set ( $class = "tab-pane" )
+                        #end
+                        #set ( $content = $item.getChild("content") )
+                        <div id="content$foreach.count$tabNum" class="${class}">
+                            $_SerializerTool.serialize($content, true)
+                        </div>
+                    #end    
+                </div>
+            </div>
+            #set ( $tabNum = $tabNum + 1 )
+        
+        #elseif (  $type == "News")
+            #set ( $show = $col.getChild("numberShow").value )
+            #set ( $stop = 1 )
+            #set ( $category = $col.getChild("categoryNews").value )
+            
+            #set ( $queryNews = $_.query())
+            #set ( $news = $queryNews.byContentType("site://site-name/path/to/ContentType").searchAcrossAllSites() )
+            #set ( $news = $queryNews.execute() )
+            
+            <div class="col-md-${num} col-sm-12">
+                <h5 class="no-top">Recent News</h5>
+                #foreach ( $item in $news )
+                    #if ( $category == "All" )
+                        <p><a href="$item.link">$item.metadata.title</a></p>
+                        #set ( $stop = $stop + 1 )
+                        #if ( $stop == $show )
+                            #break
+                        #end
+                    #elseif ( $category ==  $item.metadata.getDynamicField("category").value)
+                        
+                        <p><a href="$item.link">$item.metadata.title</a></p>
+                        #set ( $stop = $stop + 1 )
+                        #if ( $stop == $show )
+                            #break
+                        #end
+                  #elseif ( $category ==  $item.metadata.getDynamicField("department").value)
+                        <p><a href="$item.link">$item.metadata.title</a></p>
+                            #set ( $stop = $stop + 1 )
+                            #if ( $stop == $show )
+                                #break
+                            #end
+                    #end
+                    
+                    
+                #end
+            </div>
+        
+        ## Pulls in Profile Pages from the Directory Module on the Cascade CMS Exchange
+        
+        #elseif ( $type == "Feature Bio" )
+            #set ( $bio = $_XPathTool.selectSingleNode($col, "bioPage/content/system-data-structure") )
+            #set ( $bioLink = $_XPathTool.selectSingleNode($col, "bioPage/link").value )
+            #set ( $title = $bio.getChild("title").value )
+            #set ( $dept = $bio.getChild("department").getChild("value").value )
+            #set ( $content = $bio.getChild("biography").value )
+            #set ( $name = $_XPathTool.selectSingleNode($col, "bioPage/display-name").value )
+            #set ( $image = $bio.getChild("headshot") )
+            #set ( $link = $image.getChild("link").value )
+            <div class="col-md-${num} col-sm-12">
+                <img src="${link}" width="200px" align="left" class="img-padding-right"/>
+                <p><strong>${name}</strong><br />
+                ${title}, ${dept}</p>
+                <p style="overflow:hidden;">${_DisplayTool.truncate($content,250,"...")}<br /><br /><a href="${bioLink}">Read Full Bio</a></p>
+            </div>
+            
+        #elseif (  $type == "Events")
+            #set ( $show = $col.getChild("numberShow").value )
+            #set ( $stop = 1 )
+            #set ( $category = $col.getChild("categoryEvents").value )
+            
+            #set ( $queryEvents = $_.query())
+            #set ( $events = $queryEvents.byContentType("site://site/for/Event").searchAcrossAllSites().publishableOnly(true) )
+            #set ( $events = $queryEvents.execute() )
+            
+            <div class="col-md-${num} col-sm-12">
+                <h5 class="no-top">Events</h5>
+                
+                #foreach ( $item in $events )
+                    #if (!$item.path.startsWith("_cascade/base assets"))
+                    #if ( $category == "All" )
+                        <p><a href="$item.link">$_DateTool.format("MMMM dd", $_DateTool.getDate($item.getStructuredDataNode("starts").textValue)) - $item.metadata.title</a></p>
+                        #set ( $stop = $stop + 1 )
+                        #if ( $stop == $show )
+                            #break
+                        #end
+                    #elseif ( $category ==  $item.metadata.getDynamicField("category").value)
+                        <p><a href="$item.link">$_DateTool.format("MMMM dd", $_DateTool.getDate($item.getStructuredDataNode("starts").textValue)) - $item.metadata.title</a></p>
+                        #set ( $stop = $stop + 1 )
+                        #if ( $stop == $show )
+                            #break
+                        #end
+                    #end
+                    #end
+                    
+                    
+                #end
+            </div>
+        #end
+        
+    #end
+    </div>
+    
+#end
+</div>
+</div>
