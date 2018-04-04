@@ -1,4 +1,4 @@
-#set ( $sib = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block) )
+#set ( $sib = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block") )
 
 #set ( $bricks = $_XPathTool.selectNodes($sib, "system-page/system-data-structure/brick") )
 #macro ( useBricks $contentString )
