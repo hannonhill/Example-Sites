@@ -3,9 +3,11 @@ Faculty Directory
 
 It contains:
 
-* Directory Landing Page, Faculty Page.
-* Auto generates A-Z filter listing at top of page and disables not used last name letters.
-* Custom Search JS - search terms can be updated by editing the format attached to this asset: /tipuesearch/tipuesearch_content
-* Asset Factories for new Faculty Page, CV PDF upload, headshot image upload.
+* Directory Landing Page, Faculty Page, JSON file of faculty data
+* Complete Search using AngularJS for filtering and sorting by department, name, title or expertise
+* Pagination (amount per page can be adjusted in directory.js)
+* Uses Bootstrap v4.1 CSS for basic page layout
 
-Current Site was exported using Cascade Server version 7.14.2
+Current Site was exported using Cascade CMS version 8.9.
+
+Note: expertise tags uses new content tagging feature only available in v8.9+.
