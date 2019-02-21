@@ -9,7 +9,7 @@ Example Sites for importing into Cascade Server instances.
 
 - [Course Catalog](https://github.com/hannonhill/Example-Sites/tree/master/Course-Catalog)
 
-- [Faculty Directory](https://github.com/hannonhill/Example-Sites/tree/master/Faculty-Directory)
+- [Faculty Directory](https://github.com/hannonhill/Example-Sites/tree/master/Faculty-Directory) - Basic directory functionality using AngularJS to provide searching, filtering and pagination features on the listing page.
 
 - [HTML5 Boilerplate](https://github.com/hannonhill/Example-Sites/tree/master/HTML5-Boilerplate) - HTML5 Boilerplate templates integrated into Cascade.
 
@@ -19,6 +19,6 @@ Example Sites for importing into Cascade Server instances.
 
 - [Site Scaffolding](https://github.com/hannonhill/Example-Sites/tree/master/Site-Scaffolding) - Basic Site for building out a brand new Site from scratch that has folder scaffolding. Contains the admin folder structure, a few Index Blocks, and an XML Template.
 
-- [Social Media Mashup](https://github.com/hannonhill/Example-Sites/tree/master/Social-Media-Mashup)
+- [Social Media Mashup](https://github.com/hannonhill/Example-Sites/tree/master/Social-Media-Mashup) - Combines Facebook, Instagram and Twitter API's along with YouTube, Flickr and custom RSS feeds. Instagram is currently not working due to recent Facebook API changes.
 
 - [Starter Site](https://github.com/hannonhill/Example-Sites/tree/master/Starter-Site) - Basic starter for building out a brand new Site from scratch. Contains sample folder structure, example Admin assets, example Index Blocks, and example Asset Factory.
