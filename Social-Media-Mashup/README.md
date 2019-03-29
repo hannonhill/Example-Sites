@@ -1,3 +1,6 @@
+# ARCHIVED
+This repository has been archived and is no longer actively maintained. A new version of the Social Media Mashup can be found at https://github.com/hannonhill/exchange-modules/tree/master/social-media-mashup
+
 Social Media Mashup
 ============================
 
