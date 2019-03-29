@@ -1,3 +1,6 @@
+# ARCHIVED
+This repository has been archived and is no longer actively maintained. A new version of the Directory can be found at https://github.com/hannonhill/exchange-modules/tree/master/directory
+
 Faculty Directory
 ============================
 
