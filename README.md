@@ -1,3 +1,6 @@
+# ARCHIVED
+This repository has been archived and is no longer actively maintained. A new version of the exchange modules can be found at https://github.com/hannonhill/exchange-modules
+
 Cascade Server Example Sites
 ============================
 
